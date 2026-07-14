@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="format-detection" content="telephone=yes">
+<meta name="description" content="Семейный отдых в Имеретинке (Сочи): первая линия, программа по дням для ребёнка 5 лет, питание, рейсы и поезда.">
+<meta name="theme-color" content="#0e6b7a">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Имеретинка — наш отдых с ребёнком">
+<meta property="og:description" content="Первая линия, программа по дням, питание, дорога, сборы. Июль–август 2026.">
+<meta property="og:locale" content="ru_RU">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏖️</text></svg>">
+<title>Имеретинка — наш отдых с ребёнком</title>
+<style>
+:root{
+  --sea:#0e6b7a; --sea-deep:#0a4d59; --sand:#f4ecd9; --coral:#e5734b;
+  --ink:#173238; --muted:#5c7379; --line:#d9c7a8; --card:#fffdf7; --star:#e0a92e;
+  --bg1:#eaf4f2; --bg2:#f4ecd9; --chip:#dcefec;
+}
+[data-theme="dark"]{
+  --sea:#3fb8cc; --sea-deep:#7fd6e4; --sand:#12262b; --coral:#ff8a5c;
+  --ink:#e8f2f2; --muted:#9db3b8; --line:#2a4249; --card:#122b31; --star:#f0c04a;
+  --bg1:#0c1c20; --bg2:#0f2429; --chip:#173d44;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Segoe UI",system-ui,-apple-system,sans-serif;
+  background:linear-gradient(180deg,var(--bg1) 0%,var(--bg2) 100%);
+  color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased;
+  padding-bottom:60px;min-height:100vh;transition:background .3s;
+}
+header{
+  background:linear-gradient(135deg,var(--sea-deep),var(--sea));
+  color:#fff;padding:30px 20px 24px;text-align:center;
+  border-bottom:5px solid var(--coral);position:relative;
+}
+header .kicker{font-size:12px;letter-spacing:3px;text-transform:uppercase;opacity:.85}
+header h1{font-size:26px;font-weight:800;margin:6px 0 4px;letter-spacing:-.5px}
+header p{font-size:13px;opacity:.92}
+.theme-btn{
+  position:absolute;top:16px;right:16px;background:rgba(255,255,255,.15);
+  border:1px solid rgba(255,255,255,.35);color:#fff;width:38px;height:38px;
+  border-radius:50%;font-size:17px;cursor:pointer;transition:.2s;
+}
+.theme-btn:hover{background:rgba(255,255,255,.3)}
+.tabs{
+  display:flex;gap:5px;justify-content:center;flex-wrap:wrap;
+  position:sticky;top:0;z-index:30;padding:11px 8px;
+  background:color-mix(in srgb,var(--sand) 96%,transparent);
+  backdrop-filter:blur(8px);border-bottom:1px solid var(--line);
+}
+.tab{
+  border:1.5px solid var(--sea);background:var(--card);color:var(--sea);
+  padding:8px 13px;border-radius:20px;font-size:13px;font-weight:700;
+  cursor:pointer;transition:.15s;white-space:nowrap;
+}
+.tab:hover{filter:brightness(1.05);transform:translateY(-1px)}
+.tab.active{background:var(--sea);color:#fff}
+main{max-width:780px;margin:0 auto;padding:20px 14px 0}
+.panel{display:none;animation:fade .3s ease}
+.panel.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.intro{
+  font-size:13.5px;color:var(--muted);background:var(--card);
+  border-left:3px solid var(--coral);padding:12px 14px;border-radius:8px;margin-bottom:16px;
+}
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:14px;
+  padding:16px 16px 14px;margin-bottom:14px;box-shadow:0 2px 8px rgba(10,77,89,.07);
+  position:relative;
+}
+.num{
+  position:absolute;top:-11px;left:14px;background:var(--sea);color:#fff;
+  min-width:30px;height:30px;border-radius:15px;display:flex;align-items:center;
+  justify-content:center;font-weight:800;font-size:14px;padding:0 8px;
+  box-shadow:0 2px 5px rgba(0,0,0,.15);
+}
+.num.star{background:var(--star);color:#3a2b00}
+.num.food{background:var(--coral)}
+.card h3{font-size:17px;margin:6px 0 3px;padding-left:26px}
+.tag{
+  display:inline-block;font-size:11px;font-weight:700;text-transform:uppercase;
+  letter-spacing:.5px;color:var(--sea-deep);
+  background:var(--chip);padding:2px 8px;border-radius:10px;margin-left:26px;
+}
+.card p{font-size:13.5px;color:var(--muted);margin:8px 0 10px}
+.card .meta{font-size:12px;color:var(--ink);margin:2px 0}
+.card .meta b{color:var(--sea-deep)}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.btn{
+  display:inline-flex;align-items:center;gap:5px;text-decoration:none;
+  font-size:12.5px;font-weight:700;padding:8px 12px;border-radius:9px;transition:.15s;
+  cursor:pointer;border:none;
+}
+.btn-map{background:var(--sea);color:#fff}
+.btn-map:hover{background:var(--sea-deep)}
+.btn-route{background:#fff;color:var(--sea);border:1.5px solid var(--sea)}
+[data-theme="dark"] .btn-route{background:transparent}
+.btn-web{background:var(--chip);color:var(--sea-deep)}
+.btn-tel{background:#fff;color:var(--coral);border:1.5px solid var(--coral)}
+[data-theme="dark"] .btn-tel{background:transparent}
+.day-line{font-size:12px;font-weight:700;color:var(--coral);text-transform:uppercase;letter-spacing:1px;margin-left:26px}
+.dolphin{background:color-mix(in srgb,var(--coral) 12%,var(--card));border:1px dashed var(--coral);border-radius:8px;padding:8px 10px;font-size:12.5px;color:var(--coral);margin-top:8px}
+.warn{background:color-mix(in srgb,var(--coral) 10%,var(--card));border:1px solid var(--coral);border-radius:8px;padding:10px 12px;font-size:12.5px;color:var(--coral);margin-bottom:14px}
+.legend{font-size:12px;color:var(--muted);text-align:center;margin:18px 0 8px}
+footer{max-width:780px;margin:24px auto 0;padding:16px 14px;font-size:11.5px;color:var(--muted);border-top:1px solid var(--line);text-align:center}
+/* фильтры */
+.filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.chip{
+  font-size:12px;font-weight:600;padding:6px 12px;border-radius:16px;cursor:pointer;
+  border:1.5px solid var(--line);background:var(--card);color:var(--muted);transition:.15s;
+}
+.chip.on{background:var(--sea);color:#fff;border-color:var(--sea)}
+.hidden{display:none!important}
+/* чеклист */
+.check{display:flex;align-items:center;gap:10px;padding:9px 12px;background:var(--card);border:1px solid var(--line);border-radius:9px;margin-bottom:7px;cursor:pointer;transition:.15s;font-size:13.5px}
+.check:hover{border-color:var(--sea)}
+.check input{width:19px;height:19px;accent-color:var(--sea);cursor:pointer;flex-shrink:0}
+.check.done span{text-decoration:line-through;color:var(--muted)}
+.check-group{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--sea-deep);margin:14px 0 8px}
+/* дорога/полезное таблицы */
+.tbl{width:100%;border-collapse:collapse;font-size:12.5px;margin:10px 0}
+.tbl th,.tbl td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+.tbl th{background:var(--chip);color:var(--sea-deep);font-weight:700}
+.emerg{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.emerg a{flex:1;min-width:130px;text-align:center;background:var(--card);border:1.5px solid var(--coral);color:var(--coral);border-radius:10px;padding:12px 8px;text-decoration:none;font-weight:700;font-size:14px}
+.emerg a small{display:block;font-size:11px;font-weight:500;color:var(--muted);margin-top:3px}
+.tip{background:var(--chip);border-radius:9px;padding:11px 13px;font-size:13px;margin:10px 0;color:var(--ink)}
+.tip b{color:var(--sea-deep)}
+.up{position:fixed;bottom:20px;right:20px;width:46px;height:46px;border-radius:50%;background:var(--sea);color:#fff;border:none;font-size:20px;cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,.25);display:none;z-index:40}
+.up.show{display:block}
+@media print{
+  .tabs,.theme-btn,.up,.filters,.actions{display:none!important}
+  .panel{display:block!important;page-break-before:always}
+  body{background:#fff}
+  .card{box-shadow:none;break-inside:avoid}
+}
+
+/* ===== iOS / iPhone 14 Pro Max ===== */
+html{ -webkit-text-size-adjust:100%; }
+body{
+  padding-bottom:calc(70px + env(safe-area-inset-bottom));
+  -webkit-tap-highlight-color:transparent;
+}
+header{
+  padding-top:calc(30px + env(safe-area-inset-top));
+  padding-left:calc(20px + env(safe-area-inset-left));
+  padding-right:calc(20px + env(safe-area-inset-right));
+}
+.theme-btn{
+  top:calc(16px + env(safe-area-inset-top));
+  right:calc(16px + env(safe-area-inset-right));
+  width:44px;height:44px;font-size:19px;   /* тап-таргет Apple >=44px */
+}
+.tabs{
+  padding-left:calc(8px + env(safe-area-inset-left));
+  padding-right:calc(8px + env(safe-area-inset-right));
+  overflow-x:auto; -webkit-overflow-scrolling:touch;
+  scrollbar-width:none; flex-wrap:nowrap; justify-content:flex-start;
+}
+.tabs::-webkit-scrollbar{display:none}
+.tab{
+  min-height:44px; font-size:14px; padding:10px 15px; flex:0 0 auto;
+}
+main{
+  padding-left:calc(14px + env(safe-area-inset-left));
+  padding-right:calc(14px + env(safe-area-inset-right));
+}
+.btn{
+  min-height:44px; font-size:14px; padding:11px 15px; align-items:center;
+}
+.chip{ min-height:40px; display:inline-flex; align-items:center; font-size:13px; }
+.check{ min-height:48px; font-size:15px; }
+.check input{ width:24px; height:24px; }
+.up{
+  bottom:calc(20px + env(safe-area-inset-bottom));
+  right:calc(20px + env(safe-area-inset-right));
+  width:52px;height:52px;font-size:22px;
+}
+footer{
+  padding-left:calc(14px + env(safe-area-inset-left));
+  padding-right:calc(14px + env(safe-area-inset-right));
+  padding-bottom:calc(16px + env(safe-area-inset-bottom));
+}
+/* таблицы в Дороге — горизонтальная прокрутка вместо сжатия */
+.tbl{ font-size:13.5px; }
+.tbl th,.tbl td{ padding:9px 10px; }
+/* системная тёмная тема iPhone подхватывается автоматически */
+@media (prefers-color-scheme: dark){
+  body:not([data-theme="light"]){
+    --sea:#3fb8cc; --sea-deep:#7fd6e4; --sand:#12262b; --coral:#ff8a5c;
+    --ink:#e8f2f2; --muted:#9db3b8; --line:#2a4249; --card:#122b31; --star:#f0c04a;
+    --bg1:#0c1c20; --bg2:#0f2429; --chip:#173d44;
+  }
+}
+@media (max-width:480px){
+  header h1{font-size:23px}
+  .card h3{font-size:16.5px}
+  .card p{font-size:14px}
+  .actions{gap:7px}
+}
+@media (prefers-reduced-motion: reduce){
+  *{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+<header>
+  <button class="theme-btn" onclick="toggleTheme()" id="themeBtn" title="Тема">🌙</button>
+  <div class="kicker">Имеретинка · Сириус · Адлер</div>
+  <h1>Наш отдых с ребёнком</h1>
+  <p>Конец июля — начало августа 2026 · первая линия · 2 взрослых + девочка 5 лет</p>
+</header>
+
+<div class="tabs">
+  <button class="tab active" onclick="show('live',this)">🏠 Жильё</button>
+  <button class="tab" onclick="show('play',this)">🎡 По дням</button>
+  <button class="tab" onclick="show('food',this)">🍽 Питание</button>
+  <button class="tab" onclick="show('road',this)">✈️ Дорога</button>
+  <button class="tab" onclick="show('pack',this)">🎒 Сборы</button>
+  <button class="tab" onclick="show('info',this)">ℹ️ Полезное</button>
+</div>
+
+<main>
+<!-- ЖИЛЬЁ -->
+<section id="live" class="panel active">
+  <div class="intro">Приоритет: первая линия, низкий бюджет, максимум качества. Основной выбор — апартаменты с кухней (экономия на еде). «Маршрут» строит путь от вашего места, «На карте» показывает точку.</div>
+
+  <div class="card">
+    <span class="num star">★</span>
+    <span class="tag">наш выбор · апартаменты</span>
+    <h3>Бархатные Сезоны — Екатерининский квартал 3*</h3>
+    <p>Первая линия, ~50 м до моря. Собственный пляж «Голубой флаг», лежаки и бассейн включены. Апартаменты с кухней. До Сочи Парка 15–20 мин пешком. Просить отремонтированный корпус ближе к морю (хвалят корпус 12).</p>
+    <div class="meta"><b>Адрес:</b> бул. Надежд, 42</div>
+    <div class="meta"><b>Ориентир:</b> 8 000–15 000 ₽/ночь</div>
+    <div class="actions">
+      <a class="btn btn-map" href="https://maps.google.com/?cid=17430335815208740760" target="_blank">📍 На карте</a>
+      <a class="btn btn-route" href="https://www.google.com/maps/dir/?api=1&destination=43.3906197,39.9924108" target="_blank">🧭 Маршрут</a>
+      <a class="btn btn-web" href="https://bh-s.ru/" target="_blank">Сайт</a>
+      <a class="btn btn-tel" href="tel:+78622454955">📞 Позвонить</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <span class="num">2</span>
+    <span class="tag">альтернатива · отель</span>
+    <h3>Альфа Сириус — Прибрежный квартал 3*</h3>
+    <p>У моря, ~2 мин пешком. Один из лучших недорогих отелей Сириуса по отзывам. Кулеры на этажах, рядом столовая. До шоу фонтанов 20 мин.</p>
+    <div class="meta"><b>Ориентир:</b> 7 000–12 000 ₽/ночь</div>
+    <div class="actions">
+      <a class="btn btn-map" href="https://travel.yandex.ru/hotels/sirius/" target="_blank">📍 На карте</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <span class="num">3</span>
+    <span class="tag">комфорт · апарт 4*</span>
+    <h3>ГК «Имеретинский» 4*</h3>
+    <p>Первая линия, собственный пляж, апарт-формат с кухнями, большая зелёная территория. Уровень 4* при цене, близкой к 3*.</p>
+    <div class="meta"><b>Ориентир:</b> от ~6 500 (низкие даты) до 18 000 ₽/ночь</div>
+    <div class="actions">
+      <a class="btn btn-map" href="https://101hotels.com/main/cities/sirius" target="_blank">📍 На карте</a>
+    </div>
+  </div>
+  <p class="legend">★ — наш выбор. Пляж первой линии — прямо перед Екатерининским кварталом.</p>
+</section>
+
+<!-- ПО ДНЯМ -->
+<section id="play" class="panel">
+  <div class="intro">Номер = день программы. Море — утром (8:30–11:00) и вечером (после 16:30); экскурсии и горы — в нежаркое время; жара 11–16 — тень, бассейн, обед, сон. Дни 1, 2, 7 — отдых у моря.</div>
+  <div class="warn">Картинг на большом Автодроме — с 8 лет. Для 5 лет: детский автотрек на Роза Хутор и детский картинг в Сочи Парке. Родельбан — с 5 лет со взрослым.</div>
+  <div class="filters" id="playFilters">
+    <span class="chip on" data-f="all" onclick="filter(this,'all')">Все</span>
+    <span class="chip" data-f="auto" onclick="filter(this,'auto')">🏎 Автоспорт</span>
+    <span class="chip" data-f="fauna" onclick="filter(this,'fauna')">🐾 Флора/фауна</span>
+    <span class="chip" data-f="fun" onclick="filter(this,'fun')">🎡 Аттракционы</span>
+    <span class="chip" data-f="mount" onclick="filter(this,'mount')">⛰ Горы</span>
+    <span class="chip" data-f="free" onclick="filter(this,'free')">🆓 Бесплатно детям</span>
+    <span class="chip" data-f="heat" onclick="filter(this,'heat')">☀️ В жару/дождь</span>
+  </div>
+
+  <div class="card" data-cat="auto fun">
+    <span class="num">3</span><div class="day-line">День 3</div>
+    <h3>Сочи Автодром — трасса Формулы-1 + Автомузей</h3>
+    <p>Экскурсия на гольф-каре по стартовой прямой Ф-1, паддок, подиум; настоящие болиды в Автомузее. Её главный интерес — автоспорт. Дети до 6 лет бесплатно.</p>
+    <div class="actions">
+      <a class="btn btn-map" href="https://maps.google.com/?cid=9755381710337938842" target="_blank">📍 На карте</a>
+      <a class="btn btn-route" href="https://www.google.com/maps/dir/?api=1&destination=43.4099851,39.9690264" target="_blank">🧭 Маршрут</a>
+      <a class="btn btn-web" href="https://siriusautodrom.ru/" target="_blank">Сайт</a>
+    </div>
+  </div>
+
+  <div class="card" data-cat="fun free auto">
+    <span class="num">4</span><div class="day-line">Дни 4 и 12</div>
+    <h3>Сочи Парк — парк развлечений</h3>
+    <p>«Русский Диснейленд»: аттракционы по росту, детский картинг, Диноклуб, научный центр «Шарадейка», совариум. Единый билет. К открытию 10:00, будни. Дети до 5 лет часто бесплатно.</p>
+    <div class="actions">
+      <a class="btn btn-map" href="https://maps.google.com/?cid=9186318659759053098" target="_blank">📍 На карте</a>
+      <a class="btn btn-route" href="https://www.google.com/maps/dir/?api=1&destination=43.4045015,39.9643642" target="_blank">🧭 Маршрут</a>
+      <a class="btn btn-web" href="https://www.sochipark.ru/" target="_blank">Сайт</a>
+    </div>
+  </div>
+
+  <div class="card" data-cat="free">
+    <span class="num">5</span><div class="day-line">День 5 · вечер</div>
+    <h3>Поющие фонтаны — Олимпийский парк</h3>
+    <p>Свето-музыкальное шоу, программы меняются, бесплатно. Обычно 21:00–22:00.</p>
+    <div class="actions">
+      <a class="btn btn-map" href="https://maps.google.com/?cid=12804713649693478972" target="_blank">📍 На карте</a>
+      <a class="btn btn-route" href="https://www.google.com/maps/dir/?api=1&destination=43.4056715,39.9552621" target="_blank">🧭 Маршрут</a>
+    </div>
+  </div>
+
+  <div class="card" data-cat="mount auto fauna">
+    <span class="num">6</span><div class="day-line">День 6 · Красная Поляна</div>
+    <h3>Роза Хутор — канатка + родельбан + автотрек</h3>
+    <p>Канатки на Роза Пик (2320 м) — панорама Кавказа и море. Родельбан (сани до 40 км/ч, с 5 лет со взрослым) — её «скорость» безопасно. Детский автотрек — картинг по возрасту. До 6 лет канатка бесплатно.</p>
+    <div class="actions">
+      <a class="btn btn-map" href="https://maps.google.com/?cid=17859351319957848950" target="_blank">📍 На карте</a>
+      <a class="btn btn-route" href="https://www.google.com/maps/dir/?api=1&destination=43.6831845,40.2669502" target="_blank">🧭 Маршрут</a>
+      <a class="btn btn-web" href="https://go.rosakhutor.ru/" target="_blank">Сайт</a>
+    </div>
+  </div>
+
+  <div class="card" data-cat="fauna heat">
+    <span class="num">8</span><div class="day-line">День 8</div>
+    <h3>Океанариум Sochi Discovery World</h3>
+    <p>30 аквариумов, 44-метровый стеклянный тоннель, акулы, скаты, мурены. Отлично в жару и дождь. До 4 лет бесплатно.</p>
+    <div class="actions">
+      <a class="btn btn-map" href="https://maps.google.com/?cid=2706783182458686292" target="_blank">📍 На карте</a>
+      <a class="btn btn-route" href="https://www.google.com/maps/dir/?api=1&destination=43.4718204,39.8972098" target="_blank">🧭 Маршрут</a>
+    </div>
+  </div>
+
+  <div class="card" data-cat="fauna free">
+    <span class="num">9</span><div class="day-line">День 9</div>
+    <h3>Сочинский дендрарий</h3>
+    <p>1800+ видов растений, канатная дорога, мини-зоопарк (павлины, страусы, попугаи). Дошкольникам до 7 лет вход и фуникулёр бесплатны. Здесь снимали «Чебурашку».</p>
+    <div class="actions">
+      <a class="btn btn-map" href="https://maps.google.com/?cid=13995105669108303681" target="_blank">📍 На карте</a>
+      <a class="btn btn-route" href="https://www.google.com/maps/dir/?api=1&destination=43.5684001,39.7420714" target="_blank">🧭 Маршрут</a>
+      <a class="btn btn-web" href="https://dendrarium.ru/" target="_blank">Сайт</a>
+    </div>
+  </div>
+
+  <div class="card" data-cat="fauna mount free">
+    <span class="num">10</span><div class="day-line">День 10 · Красная Поляна</div>
+    <h3>Вольерный комплекс «Лаура» (Кавказский заповедник)</h3>
+    <p>Не зоопарк, а центр спасённых животных: леопард, зубры, рыси, волки в среде, близкой к дикой. До 7 лет бесплатно. Санитарный день — 2-й и 4-й понедельник (9–13 закрыто).</p>
+    <div class="actions">
+      <a class="btn btn-map" href="https://maps.google.com/?cid=8370330043836611180" target="_blank">📍 На карте</a>
+      <a class="btn btn-route" href="https://www.google.com/maps/dir/?api=1&destination=43.6971017,40.2680537" target="_blank">🧭 Маршрут</a>
+      <a class="btn btn-web" href="https://kavkazzapoved.ru/" target="_blank">Сайт</a>
+    </div>
+  </div>
+
+  <div class="card" data-cat="fauna free">
+    <span class="num">11</span><div class="day-line">День 11</div>
+    <h3>Обезьяний питомник (НИИ приматологии)</h3>
+    <p>4000+ приматов, шимпанзе-космонавты, капсула — фауна + её интерес к науке и космосу. Экскурсии кроме понедельника, каждый час. До 7 лет бесплатно.</p>
+    <div class="actions">
+      <a class="btn btn-map" href="https://maps.google.com/?cid=9303836623977625805" target="_blank">📍 На карте</a>
+      <a class="btn btn-route" href="https://www.google.com/maps/dir/?api=1&destination=43.4345816,39.9954723" target="_blank">🧭 Маршрут</a>
+      <a class="btn btn-web" href="http://primatologia.ru/" target="_blank">Сайт</a>
+    </div>
+  </div>
+
+  <div class="card" data-cat="fauna">
+    <span class="num">12</span><div class="day-line">День 12 · вариант</div>
+    <h3>Воронцовская пещера</h3>
+    <p>Крупнейшая карстовая система Кавказа: залы, сталактиты, подсветка. С 5–6 лет. Внутри +12°C — тёплая кофта. Подход ~1,2–1,5 км по лесу. Серпантин из Хосты.</p>
+    <div class="actions">
+      <a class="btn btn-map" href="https://maps.google.com/?cid=5089687316122482114" target="_blank">📍 На карте</a>
+      <a class="btn btn-route" href="https://www.google.com/maps/dir/?api=1&destination=43.6127076,39.9330450" target="_blank">🧭 Маршрут</a>
+      <a class="btn btn-web" href="http://voroncovskie-peschery.ru/" target="_blank">Сайт</a>
+    </div>
+  </div>
+
+  <div class="card" data-cat="fauna fun">
+    <span class="num">13</span><div class="day-line">День 13</div>
+    <h3>Парк «Ривьера» + Большой Сочинский дельфинарий</h3>
+    <p>Дельфины, белухи, морской лев; детские аттракционы, контактный зоопарк, сад бабочек, альпаки. Центр Сочи — дорога дольше.</p>
+    <div class="dolphin">🐬 <b>Плавание с дельфином — можно.</b> В Ривьере детей 3–7 лет пускают в воду только с инструктором (сопровождение обязательно). Ориентир: развлекательное плавание от 2000 ₽, детский формат ~2500 ₽. Бронировать заранее. <b>Адлерский дельфинарий — с 6 лет</b>, для пятилетней не подходит.</div>
+    <div class="actions">
+      <a class="btn btn-map" href="https://maps.google.com/?cid=7801036186855745369" target="_blank">📍 На карте</a>
+      <a class="btn btn-route" href="https://www.google.com/maps/dir/?api=1&destination=43.5903694,39.7153187" target="_blank">🧭 Маршрут</a>
+      <a class="btn btn-web" href="https://delfin-riviera.ru/" target="_blank">Сайт</a>
+    </div>
+  </div>
+</section>
+
+<!-- ПИТАНИЕ -->
+<section id="food" class="panel">
+  <div class="intro">Завтрак — сами на кухне (супермаркет у квартала); обед — недорогие столовые у набережной; ужин — ресторан с детской зоной. Всё в 400–800 м, кроме отмеченных «такси».</div>
+
+  <div class="card"><span class="num food">П1</span><span class="tag">обед · столовая</span>
+    <h3>Столовая №1</h3>
+    <p>Обед ~320 ₽ (суп, курица, салат, компот, пирог). Кондиционер, детские стульчики, очередей меньше. Лучшая в жару.</p>
+    <div class="meta"><b>Адрес:</b> Нижнеимеретинская, 117</div>
+    <div class="actions">
+      <a class="btn btn-map" href="https://maps.google.com/?cid=568750246973156255" target="_blank">📍 На карте</a>
+      <a class="btn btn-route" href="https://www.google.com/maps/dir/?api=1&destination=43.3982095,39.9663297" target="_blank">🧭 Маршрут</a>
+    </div>
+  </div>
+
+  <div class="card"><span class="num food">П2</span><span class="tag">обед · столовая</span>
+    <h3>Столовая «Утро»</h3>
+    <p>Самая дешёвая (рейтинг 4.6), обед на двоих ~450 ₽. Очередь в 13–14 ч — приходить до 13:00.</p>
+    <div class="meta"><b>Адрес:</b> Нижнеимеретинская, 137а</div>
+    <div class="actions">
+      <a class="btn btn-map" href="https://maps.google.com/?cid=13293638043578622963" target="_blank">📍 На карте</a>
+      <a class="btn btn-route" href="https://www.google.com/maps/dir/?api=1&destination=43.3981475,39.9689865" target="_blank">🧭 Маршрут</a>
+    </div>
+  </div>
+
+  <div class="card"><span class="num food">П3</span><span class="tag">обед/ужин · столовая</span>
+    <h3>Четыре Сезона</h3>
+    <p>Прямо на берегу, до 22:00, много вегетарианского, удобно с детьми.</p>
+    <div class="meta"><b>Адрес:</b> Староообрядческая, 2</div>
+    <div class="actions">
+      <a class="btn btn-map" href="https://maps.google.com/?cid=13009614999073441118" target="_blank">📍 На карте</a>
+      <a class="btn btn-route" href="https://www.google.com/maps/dir/?api=1&destination=43.4004711,39.9679812" target="_blank">🧭 Маршрут</a>
+      <a class="btn btn-tel" href="tel:+79182027277">📞 Позвонить</a>
+    </div>
+  </div>
+
+  <div class="card"><span class="num food">П4</span><span class="tag">ужин · ресторан + игровая</span>
+    <h3>Fabrika Vkusa</h3>
+    <p>Детская игровая зона на 1 этаже: ребёнок играет — вы ужинаете. Гриль, рыба, 20 м от моря.</p>
+    <div class="meta"><b>Адрес:</b> Нижнеимеретинская, 171а</div>
+    <div class="actions">
+      <a class="btn btn-map" href="https://maps.google.com/?cid=1921811727495038133" target="_blank">📍 На карте</a>
+      <a class="btn btn-route" href="https://www.google.com/maps/dir/?api=1&destination=43.3963623,39.9738006" target="_blank">🧭 Маршрут</a>
+      <a class="btn btn-web" href="https://fabrikavkysarest.ru/" target="_blank">Сайт</a>
+    </div>
+  </div>
+
+  <div class="card"><span class="num food">П5</span><span class="tag">ужин · грузинский · такси</span>
+    <h3>Guri Sirius</h3>
+    <p>Хачапури, хинкали, вкусно и недорого. ~10 мин на такси.</p>
+    <div class="meta"><b>Адрес:</b> Голубая, 1б/1</div>
+    <div class="actions">
+      <a class="btn btn-map" href="https://maps.google.com/?cid=15957407809210856719" target="_blank">📍 На карте</a>
+      <a class="btn btn-route" href="https://www.google.com/maps/dir/?api=1&destination=43.4115835,39.9346808" target="_blank">🧭 Маршрут</a>
+      <a class="btn btn-web" href="https://gurirest.ru/" target="_blank">Сайт</a>
+      <a class="btn btn-tel" href="tel:+79282340984">📞 Позвонить</a>
+    </div>
+  </div>
+
+  <div class="card"><span class="num food">П6</span><span class="tag">доставка · рыба/пицца</span>
+    <h3>Los' Losos'</h3>
+    <p>Роллы, пицца, вок; доставка в квартал — для «ленивого» вечера.</p>
+    <div class="meta"><b>Адрес:</b> Субтропическая, 2 (Адлер)</div>
+    <div class="actions">
+      <a class="btn btn-map" href="https://maps.google.com/?cid=3705686775669786182" target="_blank">📍 На карте</a>
+      <a class="btn btn-tel" href="tel:+79184576720">📞 Позвонить</a>
+    </div>
+  </div>
+</section>
+
+<!-- ДОРОГА -->
+<section id="road" class="panel">
+  <div class="intro">Как добраться из Москвы и как передвигаться на месте. Главное правило: только возвратные авиабилеты + поезд как страховка.</div>
+
+  <h3 style="color:var(--sea-deep);margin-bottom:4px">✈️ Самолёт — ранние утренние рейсы</h3>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:6px">Шереметьево (SVO) → Сочи (AER), ~4 ч. Тариф только возвратный («Выгодный»/«Максимум»).</p>
+  <table class="tbl">
+    <tr><th>Рейс</th><th>Вылет</th><th>Комментарий</th></tr>
+    <tr><td>SU 1668</td><td>05:55</td><td>Самый ранний, прилёт ~10:00</td></tr>
+    <tr><td>SU 1044</td><td>06:35</td><td>Кормят завтраком — удобно с ребёнком</td></tr>
+    <tr><td>SU 1176</td><td>07:55</td><td>Резервный утренний</td></tr>
+  </table>
+  <div class="warn">Аэропорт Сочи летом 2026 периодически закрывают из-за угроз БПЛА, чаще ночью. Берите ранний рейс, избегайте вылетов после 21:00, держите поезд как план Б. За 24–48 ч проверяйте табло.</div>
+  <div class="actions">
+    <a class="btn btn-web" href="https://www.aeroflot.ru" target="_blank">Аэрофлот — билеты</a>
+    <a class="btn btn-web" href="https://aeraero.ru/flights/online-schedule/" target="_blank">Табло аэропорта Сочи</a>
+  </div>
+
+  <h3 style="color:var(--sea-deep);margin:18px 0 4px">🚆 Поезд — надёжная страховка</h3>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:6px">Москва (Казанский) → Адлер, вокзал в 10–15 мин от Имеретинки. Билеты возвратные.</p>
+  <table class="tbl">
+    <tr><th>Поезд</th><th>Тип</th><th>В пути</th></tr>
+    <tr><td>№ 104В</td><td>Двухэтажный фирменный</td><td>~24–26 ч</td></tr>
+    <tr><td>№ 102С</td><td>Фирменный «Премиум»</td><td>~25–27 ч</td></tr>
+    <tr><td>№ 012М</td><td>Фирменный</td><td>~27–33 ч</td></tr>
+  </table>
+  <div class="actions"><a class="btn btn-web" href="https://ticket.rzd.ru" target="_blank">РЖД — билеты</a></div>
+
+  <h3 style="color:var(--sea-deep);margin:18px 0 4px">🚗 На месте (у нас есть авто)</h3>
+  <table class="tbl">
+    <tr><th>Способ</th><th>Когда</th><th>Заметка</th></tr>
+    <tr><td>Каршеринг</td><td>По Адлеру/Сириусу</td><td>Горы вне зоны аренды</td></tr>
+    <tr><td>Прокат авто 2–3 дня</td><td>Красная Поляна, пещера</td><td>Детское кресло обязательно</td></tr>
+    <tr><td>Такси</td><td>Разово по серпантину</td><td>Адлер→Роза Хутор ~1500–2500 ₽</td></tr>
+    <tr><td>«Ласточка»</td><td>Адлер → Роза Хутор</td><td>40–45 мин, без пробок</td></tr>
+  </table>
+</section>
+
+<!-- СБОРЫ -->
+<section id="pack" class="panel">
+  <div class="intro">Интерактивный чек-лист: отмечайте галочками. Отметки сохраняются, пока открыта страница (при пересылке файла список чистый). Нажмите строку целиком.</div>
+  <div id="packList"></div>
+  <button class="btn btn-route" style="margin-top:12px" onclick="resetPack()">↺ Снять все отметки</button>
+</section>
+
+<!-- ПОЛЕЗНОЕ -->
+<section id="info" class="panel">
+  <div class="intro">Телефоны, ссылки и советы, которые пригодятся на месте.</div>
+
+  <h3 style="color:var(--sea-deep);margin-bottom:4px">🚨 Экстренные службы</h3>
+  <div class="emerg">
+    <a href="tel:112">112<small>единый (даже без денег/SIM)</small></a>
+    <a href="tel:103">103<small>скорая помощь</small></a>
+    <a href="tel:102">102<small>полиция</small></a>
+    <a href="tel:101">101<small>пожарные / спасатели</small></a>
+  </div>
+
+  <h3 style="color:var(--sea-deep);margin:16px 0 4px">🌡 Погода и режим дня</h3>
+  <div class="tip"><b>Жара 11:00–16:00</b> — пик ультрафиолета. Море и прогулки — до 11 и после 16:30. Днём: тень, бассейн, обед, сон ребёнка. В горах и пещере прохладно (+12°C) — берите кофту даже в жару.</div>
+  <div class="tip"><b>Пляж галечный</b> — аквашузы всем; вход в море быстро уходит на глубину — ребёнку жилет/нарукавники и купание только рядом со взрослым.</div>
+  <div class="tip"><b>Если зазвучат сирены</b> (угроза БПЛА) — зайти в помещение без окон / на нижний этаж, дождаться отбоя (20–90 мин), не снимать на телефон. Следовать указаниям персонала.</div>
+
+  <h3 style="color:var(--sea-deep);margin:16px 0 4px">🔗 Полезные ссылки</h3>
+  <div class="actions" style="flex-direction:column;align-items:stretch">
+    <a class="btn btn-web" href="https://aeraero.ru/flights/online-schedule/" target="_blank">Онлайн-табло аэропорта Сочи</a>
+    <a class="btn btn-web" href="https://ticket.rzd.ru" target="_blank">РЖД — билеты и статус поезда</a>
+    <a class="btn btn-web" href="https://www.sochipark.ru/" target="_blank">Сочи Парк — билеты онлайн</a>
+    <a class="btn btn-web" href="https://go.rosakhutor.ru/" target="_blank">Роза Хутор — канатки и активности</a>
+  </div>
+
+  <h3 style="color:var(--sea-deep);margin:16px 0 4px">✅ Чек-лист перед бронированием</h3>
+  <div class="tip">
+    1. Отель — тариф с бесплатной отменой.<br>
+    2. Поезд туда + возвратный авиабилет обратно (или поезд в обе стороны).<br>
+    3. За 48 ч до вылета — проверить табло аэропорта.<br>
+    4. Сочи Парк и экскурсии — в будни, билеты онлайн заранее.<br>
+    5. Плавание с дельфином (Ривьера) — бронировать заранее, формат с инструктором.<br>
+    6. Прокат авто для гор — с детским креслом.
+  </div>
+</section>
+</main>
+
+<button class="up" id="upBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Наверх">↑</button>
+
+<footer>
+Путеводитель информационный. Цены, часы работы и возрастные правила проверяйте при бронировании.<br>
+Отцу с ограничением на выезд поездки за границу недоступны — вся программа на территории РФ.<br>
+«На карте» — показать точку, «Маршрут» — построить путь в Google Maps. Файл открывается в любом браузере и на телефоне.
+</footer>
+
+<script>
+function show(id,btn){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function isDark(){
+  const t=document.body.getAttribute('data-theme');
+  if(t) return t==='dark';
+  return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+}
+function syncIcon(){ document.getElementById('themeBtn').textContent = isDark()?'☀️':'🌙'; }
+function toggleTheme(){
+  document.body.setAttribute('data-theme', isDark()?'light':'dark');
+  syncIcon();
+}
+syncIcon();
+if(window.matchMedia){
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>{
+    if(!document.body.getAttribute('data-theme')) syncIcon();
+  });
+}
+function filter(chip,f){
+  document.querySelectorAll('#playFilters .chip').forEach(c=>c.classList.remove('on'));
+  chip.classList.add('on');
+  document.querySelectorAll('#play .card').forEach(card=>{
+    const cats=(card.getAttribute('data-cat')||'');
+    card.classList.toggle('hidden', f!=='all' && !cats.includes(f));
+  });
+}
+// чеклист сборов
+const packItems={
+  "Ребёнку":["Аквашузы (галечный пляж)","Жилет / нарукавники","Панама, детский SPF 50+","Тёплая кофта (пещера +12°C, горы)","Закрытая обувь для гор и пещеры","Средство от укачивания (серпантин)"],
+  "Аптечка":["Жаропонижающее","Антигистаминное","От солнечных ожогов","Пластыри, антисептик"],
+  "Документы и деньги":["Паспорта, свид-во о рождении ребёнка","Билеты (поезд/самолёт)","Подтверждение брони отеля","Наличные 10–15 тыс. ₽"],
+  "Прочее":["Зарядки, павербанк","Вода и перекусы на дорогу","Детское автокресло (при прокате авто)","Купальные принадлежности"]
+};
+function buildPack(){
+  const box=document.getElementById('packList'); let html='';
+  for(const g in packItems){
+    html+=`<div class="check-group">${g}</div>`;
+    packItems[g].forEach(it=>{
+      html+=`<label class="check"><input type="checkbox" onchange="this.closest('.check').classList.toggle('done',this.checked)"><span>${it}</span></label>`;
+    });
+  }
+  box.innerHTML=html;
+}
+function resetPack(){document.querySelectorAll('#pack input').forEach(c=>{c.checked=false;c.closest('.check').classList.remove('done')})}
+buildPack();
+// кнопка наверх
+window.addEventListener('scroll',()=>{document.getElementById('upBtn').classList.toggle('show',window.scrollY>400)});
+</script>
+</body>
+</html>
