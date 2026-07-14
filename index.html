@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect width='180' height='180' rx='40' fill='%230e6b7a'/><text x='50%25' y='54%25' font-size='110' text-anchor='middle' dominant-baseline='central'>🏖️</text></svg>">
+<meta name="apple-mobile-web-app-title" content="Наш отдых">
 <meta name="format-detection" content="telephone=yes">
 <meta name="description" content="Семейный отдых в Имеретинке (Сочи): первая линия, программа по дням для ребёнка 5 лет, питание, рейсы и поезда.">
 <meta name="theme-color" content="#0e6b7a">
@@ -208,6 +210,22 @@ footer{
   *{animation:none!important;transition:none!important}
   html{scroll-behavior:auto}
 }
+
+/* баннер "на экран Домой" (только iPhone Safari) */
+#a2hs{
+  display:none; position:fixed; left:12px; right:12px;
+  bottom:calc(14px + env(safe-area-inset-bottom));
+  background:var(--card); border:1.5px solid var(--sea);
+  border-radius:14px; padding:13px 14px; z-index:50;
+  box-shadow:0 6px 22px rgba(0,0,0,.28); font-size:13.5px; color:var(--ink);
+}
+#a2hs.show{display:block; animation:slideup .35s ease}
+@keyframes slideup{from{transform:translateY(20px);opacity:0}to{transform:none;opacity:1}}
+#a2hs .row{display:flex; align-items:center; gap:10px}
+#a2hs b{color:var(--sea-deep)}
+#a2hs .close{margin-left:auto; background:none;border:none;color:var(--muted);font-size:20px;cursor:pointer;padding:2px 6px;flex-shrink:0}
+#a2hs .share{font-size:19px}
+#a2hs small{display:block;color:var(--muted);margin-top:5px;font-size:12px}
 </style>
 </head>
 <body>
@@ -252,9 +270,14 @@ footer{
     <span class="tag">альтернатива · отель</span>
     <h3>Альфа Сириус — Прибрежный квартал 3*</h3>
     <p>У моря, ~2 мин пешком. Один из лучших недорогих отелей Сириуса по отзывам. Кулеры на этажах, рядом столовая. До шоу фонтанов 20 мин.</p>
+    <div class="meta"><b>Адрес:</b> бул. Морской, 1</div>
     <div class="meta"><b>Ориентир:</b> 7 000–12 000 ₽/ночь</div>
+    <div class="dolphin">⚠️ По свежим отзывам после смены управления бывают проблемы: ребёнка от 5 лет могут просить размещать в отдельном номере/люксе, сервис нестабилен. Уточняйте условия для семьи при бронировании.</div>
     <div class="actions">
-      <a class="btn btn-map" href="https://travel.yandex.ru/hotels/sirius/" target="_blank">📍 На карте</a>
+      <a class="btn btn-map" href="https://maps.google.com/?q=43.4113099,39.9354379" target="_blank">📍 На карте</a>
+      <a class="btn btn-route" href="https://www.google.com/maps/dir/?api=1&destination=43.4113099,39.9354379" target="_blank">🧭 Маршрут</a>
+      <a class="btn btn-web" href="https://travel.yandex.ru/hotels/sirius/" target="_blank">Смотреть</a>
+      <a class="btn btn-tel" href="tel:+78003504400">📞 Позвонить</a>
     </div>
   </div>
 
@@ -263,9 +286,13 @@ footer{
     <span class="tag">комфорт · апарт 4*</span>
     <h3>ГК «Имеретинский» 4*</h3>
     <p>Первая линия, собственный пляж, апарт-формат с кухнями, большая зелёная территория. Уровень 4* при цене, близкой к 3*.</p>
+    <div class="meta"><b>Адрес:</b> ул. Голубая, 1Ж (Прибрежный квартал)</div>
     <div class="meta"><b>Ориентир:</b> от ~6 500 (низкие даты) до 18 000 ₽/ночь</div>
     <div class="actions">
-      <a class="btn btn-map" href="https://101hotels.com/main/cities/sirius" target="_blank">📍 На карте</a>
+      <a class="btn btn-map" href="https://maps.google.com/?q=43.4132752,39.9324355" target="_blank">📍 На карте</a>
+      <a class="btn btn-route" href="https://www.google.com/maps/dir/?api=1&destination=43.4132752,39.9324355" target="_blank">🧭 Маршрут</a>
+      <a class="btn btn-web" href="https://101hotels.com/main/cities/sirius" target="_blank">Смотреть</a>
+      <a class="btn btn-tel" href="tel:+78007077722">📞 Позвонить</a>
     </div>
   </div>
   <p class="legend">★ — наш выбор. Пляж первой линии — прямо перед Екатерининским кварталом.</p>
@@ -553,6 +580,16 @@ footer{
 Отцу с ограничением на выезд поездки за границу недоступны — вся программа на территории РФ.<br>
 «На карте» — показать точку, «Маршрут» — построить путь в Google Maps. Файл открывается в любом браузере и на телефоне.
 </footer>
+<div id="a2hs">
+  <div class="row">
+    <span class="share">📲</span>
+    <div><b>Добавьте на экран «Домой»</b> — откроется как приложение, в полный экран.
+      <small>Нажмите <b>Поделиться</b> внизу Safari <span class="share">􀈂</span> → «На экран „Домой“».</small>
+    </div>
+    <button class="close" onclick="closeA2HS()" aria-label="Закрыть">×</button>
+  </div>
+</div>
+
 
 <script>
 function show(id,btn){
@@ -607,6 +644,20 @@ function resetPack(){document.querySelectorAll('#pack input').forEach(c=>{c.chec
 buildPack();
 // кнопка наверх
 window.addEventListener('scroll',()=>{document.getElementById('upBtn').classList.toggle('show',window.scrollY>400)});
+
+// подсказка "на экран Домой" — только iPhone/iPad Safari, вне режима приложения
+(function(){
+  var ua = navigator.userAgent;
+  var isIOS = /iPhone|iPad|iPod/.test(ua) && !window.MSStream;
+  var isSafari = /Safari/.test(ua) && !/CriOS|FxiOS|EdgiOS|OPiOS/.test(ua);
+  var standalone = window.navigator.standalone === true;
+  if(isIOS && isSafari && !standalone){
+    setTimeout(function(){
+      var b=document.getElementById('a2hs'); if(b && !window.__a2hsClosed) b.classList.add('show');
+    }, 2500);
+  }
+})();
+function closeA2HS(){ window.__a2hsClosed=true; var b=document.getElementById('a2hs'); if(b) b.classList.remove('show'); }
 </script>
 </body>
 </html>
